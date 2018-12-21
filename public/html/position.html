@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>拉勾网后台管理系统</title>
+	<link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header></header>
+
+    <main>
+	    <div class="container">
+            <div class="">
+                <p class="pull-left">职位管理</p>
+                <!-- 按钮，点击弹出模态框 -->
+                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal" style="margin-bottom:8px;">添加</button>
+            </div>
+          
+    
+          <!-- 表格，显示错题集 -->
+          <table class="table table-bordered table-striped" style="margin-top: 10px;">
+              <thead style="background: #ccc;">
+                  <tr>
+                      <th>序号</th>
+                      <th>公司logo</th>
+                      <th>职位名称</th>
+                    <th>公司名称</th>
+                    <th>工作经验</th>
+                      <th>职位类型</th>
+                      <th>工作地点</th>
+                      <th>职位薪资</th>
+                      <th>操作</th>
+                  </tr>
+              </thead>
+              <tbody id="tbd">
+                  <tr>
+                      <td>4</td>
+                      <td>afdsadsf</td>
+                      <td>afdsadsf</td>
+                    <td>afdsadsf</td>
+                    <td>afdsadsf</td>
+                      <td>afdsadsf</td>
+                      <td>afdsadsf</td>
+                      <td>afdsadsf</td>
+                      <td><a href="javacript:void(0);"   data-toggle="modal" data-target="#updateModal">修改</a> <a href="javacript:void(0);">删除</a></td>
+                  </tr>
+              </tbody>
+          </table>
+    
+          <!-- 分页 -->
+            <nav class="pull-right">
+                <ul class="pagination">
+                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&raquo;</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+    
+	<!-- 添加公司模态框 -->
+	<div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">职位信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="add-form">
+                    <div class="form-group">
+                        <label for="addLogo">公司logo</label>
+                        <input type="file" class="form-control" id="addLogo" placeholder="标题">
+                    </div>
+                    <div class="form-group">
+                        <label for="addComPosition">职位名称</label>
+                        <input type="text" class="form-control" id="addComPosition" placeholder="输入职位名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="addPosition">公司名称</label>
+                        <input type="text" class="form-control" id="addPosition" placeholder="输入公司名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="addExperience">工作经验</label>
+                        <input type="text" class="form-control" id="addExperience" placeholder="输入工作经验">
+                    </div>
+                    <div class="form-group">
+                        <label for="addType">职位类型</label>
+                        <input type="text" class="form-control" id="addType" placeholder="输入职位类型">
+                    </div>
+                    <div class="form-group">
+                        <label for="addAddress">工作地点</label>
+                        <input type="text" class="form-control" id="addAddress" placeholder="输入工作地点">
+                    </div>
+                    <div class="form-group">
+                        <label for="addSalary">岗位薪资</label>
+                        <input type="text" class="form-control" id="addSalary" placeholder="输入岗位薪资">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-add-question">提交</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 修改公司模态框 -->
+	<div class="modal fade" id="updateModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">职位信息</h4>
+            </div>
+            <div class="modal-body">
+                <form id="update-form">
+                    <div class="form-group">
+                        <label for="updateLogo">公司logo</label>
+                        <input type="file" class="form-control" id="updateLogo" placeholder="标题">
+                    </div>
+                    <div class="form-group">
+                        <label for="updatePosition">职位名称</label>
+                        <input type="text" class="form-control" id="updatePosition" placeholder="输入职位名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateName">公司名称</label>
+                        <input type="text" class="form-control" id="updateName" placeholder="输入公司名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateExperience">工作经验</label>
+                        <input type="text" class="form-control" id="updateExperience" placeholder="输入工作经验">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateType">职位类型</label>
+                        <input type="text" class="form-control" id="updateType" placeholder="输入职位类型">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateAddress">工作地点</label>
+                        <input type="text" class="form-control" id="updateAddress" placeholder="输入工作地点">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateSalary">岗位薪资</label>
+                        <input type="text" class="form-control" id="updateSalary" placeholder="输入岗位薪资">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-add-question">提交</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 用户注册模态框 -->
+<div class="modal fade" id="registerModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title" id="registerModalLabel">用户注册</h4>
+            </div>
+            <div class="modal-body">
+                <form id="register-form">
+                    <input type="hidden" id="registerId">
+                    <div class="form-group">
+                        <label for="regisUsername">用户名</label>
+                        <input type="text" class="form-control" id="regisUsername" placeholder="输入用户名">
+                    </div>
+                    <div class="form-group">
+                        <label for="regisUserpwd">密码</label>
+                        <input type="text" class="form-control" id="regisUserpwd" placeholder="输入密码">
+                    </div>
+                    <div class="form-group">
+                        <label for="regisConfirmpwd">确认密码</label>
+                        <input type="text" class="form-control" id="regisConfirmpwd" placeholder="再次输入密码">
+                    </div>
+                    <div class="form-group">
+                        <label for="regisUseremail">邮箱</label>
+                        <input type="text" class="form-control" id="regisUseremail" placeholder="输入e-mail地址">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-register">注册</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 用户登录模态框 -->
+    <div class="modal fade" id="loginModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title" id="loginModalLabel">用户登录</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="login-form">
+                        <input type="hidden" id="loginId">
+                        <div class="form-group">
+                            <label for="loginUsername">用户名</label>
+                            <input type="text" class="form-control" id="loginUsername" placeholder="输入用户名">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginUserpwd">密码</label>
+                            <input type="password" class="form-control" id="loginUserpwd" placeholder="输入密码">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-login">登录</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+	
+    <script src="/lib/requirejs/require.min.js" data-main="/js/home/position"></script>
+</body>
+</html>
