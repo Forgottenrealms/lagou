@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>拉勾网后台管理系统</title>
+	<title>职位管理</title>
 	<link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
@@ -15,7 +15,7 @@
             <div class="">
                 <p class="pull-left">职位管理</p>
                 <!-- 按钮，点击弹出模态框 -->
-                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal" style="margin-bottom:8px;">添加</button>
+                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#addCompanyModal" style="margin-bottom:8px;">添加</button>
             </div>
           
     
@@ -35,17 +35,7 @@
                   </tr>
               </thead>
               <tbody id="tbd">
-                  <tr>
-                      <td>4</td>
-                      <td>afdsadsf</td>
-                      <td>afdsadsf</td>
-                    <td>afdsadsf</td>
-                    <td>afdsadsf</td>
-                      <td>afdsadsf</td>
-                      <td>afdsadsf</td>
-                      <td>afdsadsf</td>
-                      <td><a href="javacript:void(0);"   data-toggle="modal" data-target="#updateModal">修改</a> <a href="javacript:void(0);">删除</a></td>
-                  </tr>
+                  
               </tbody>
           </table>
     
@@ -61,47 +51,47 @@
     </main>
     
 	<!-- 添加公司模态框 -->
-	<div class="modal fade" id="myModal">
+	<div class="modal fade" id="addCompanyModal">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">职位信息</h4>
+                <h4 class="modal-title" id="addCompanyModalLabel">职位信息</h4>
             </div>
             <div class="modal-body">
                 <form id="add-form">
                     <div class="form-group">
                         <label for="addLogo">公司logo</label>
-                        <input type="file" class="form-control" id="addLogo" placeholder="标题">
+                        <input type="file" class="form-control" id="addLogo" name="logo" placeholder="标题">
                     </div>
                     <div class="form-group">
                         <label for="addComPosition">职位名称</label>
-                        <input type="text" class="form-control" id="addComPosition" placeholder="输入职位名称">
+                        <input type="text" class="form-control" id="addComPosition" name="position" placeholder="输入职位名称">
                     </div>
                     <div class="form-group">
                         <label for="addPosition">公司名称</label>
-                        <input type="text" class="form-control" id="addPosition" placeholder="输入公司名称">
+                        <input type="text" class="form-control" id="addPosition" name="company" placeholder="输入公司名称">
                     </div>
                     <div class="form-group">
                         <label for="addExperience">工作经验</label>
-                        <input type="text" class="form-control" id="addExperience" placeholder="输入工作经验">
+                        <input type="text" class="form-control" id="addExperience" name="experience" placeholder="输入工作经验">
                     </div>
                     <div class="form-group">
                         <label for="addType">职位类型</label>
-                        <input type="text" class="form-control" id="addType" placeholder="输入职位类型">
+                        <input type="text" class="form-control" id="addType" name="type" placeholder="输入职位类型">
                     </div>
                     <div class="form-group">
                         <label for="addAddress">工作地点</label>
-                        <input type="text" class="form-control" id="addAddress" placeholder="输入工作地点">
+                        <input type="text" class="form-control" id="addAddress" name="address" placeholder="输入工作地点">
                     </div>
                     <div class="form-group">
                         <label for="addSalary">岗位薪资</label>
-                        <input type="text" class="form-control" id="addSalary" placeholder="输入岗位薪资">
+                        <input type="text" class="form-control" id="addSalary" name="salary" placeholder="输入岗位薪资">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn-add-question">提交</button>
+                <button type="button" class="btn btn-primary btn-add-position">提交</button>
             </div>
             </div>
         </div>
@@ -113,112 +103,57 @@
             <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">职位信息</h4>
+                <h4 class="modal-title" id="updateModalLabel">职位信息</h4>
             </div>
             <div class="modal-body">
                 <form id="update-form">
+                    <div class="form-group hidden">
+                        <label for="updateLogo">id</label>
+                        <input type="text" class="form-control" id="_id" name="_id" placeholder="id">
+                    </div>
                     <div class="form-group">
                         <label for="updateLogo">公司logo</label>
-                        <input type="file" class="form-control" id="updateLogo" placeholder="标题">
+                        <input type="file" class="form-control" id="updateLogo" name="logo" placeholder="标题">
                     </div>
                     <div class="form-group">
                         <label for="updatePosition">职位名称</label>
-                        <input type="text" class="form-control" id="updatePosition" placeholder="输入职位名称">
+                        <input type="text" class="form-control" id="updatePosition" name="position" placeholder="输入职位名称">
                     </div>
                     <div class="form-group">
                         <label for="updateName">公司名称</label>
-                        <input type="text" class="form-control" id="updateName" placeholder="输入公司名称">
+                        <input type="text" class="form-control" id="updateName" name="company" placeholder="输入公司名称">
                     </div>
                     <div class="form-group">
                         <label for="updateExperience">工作经验</label>
-                        <input type="text" class="form-control" id="updateExperience" placeholder="输入工作经验">
+                        <input type="text" class="form-control" id="updateExperience" name="experience" placeholder="输入工作经验">
                     </div>
                     <div class="form-group">
                         <label for="updateType">职位类型</label>
-                        <input type="text" class="form-control" id="updateType" placeholder="输入职位类型">
+                        <input type="text" class="form-control" id="updateType" name="type" placeholder="输入职位类型">
                     </div>
                     <div class="form-group">
                         <label for="updateAddress">工作地点</label>
-                        <input type="text" class="form-control" id="updateAddress" placeholder="输入工作地点">
+                        <input type="text" class="form-control" id="updateAddress" name="address" placeholder="输入工作地点">
                     </div>
                     <div class="form-group">
                         <label for="updateSalary">岗位薪资</label>
-                        <input type="text" class="form-control" id="updateSalary" placeholder="输入岗位薪资">
+                        <input type="text" class="form-control" id="updateSalary" name="salary" placeholder="输入岗位薪资">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn-add-question">提交</button>
+                <button type="button" class="btn btn-primary btn-update-position">修改</button>
             </div>
             </div>
         </div>
     </div>
 
     <!-- 用户注册模态框 -->
-<div class="modal fade" id="registerModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                <h4 class="modal-title" id="registerModalLabel">用户注册</h4>
-            </div>
-            <div class="modal-body">
-                <form id="register-form">
-                    <input type="hidden" id="registerId">
-                    <div class="form-group">
-                        <label for="regisUsername">用户名</label>
-                        <input type="text" class="form-control" id="regisUsername" placeholder="输入用户名">
-                    </div>
-                    <div class="form-group">
-                        <label for="regisUserpwd">密码</label>
-                        <input type="text" class="form-control" id="regisUserpwd" placeholder="输入密码">
-                    </div>
-                    <div class="form-group">
-                        <label for="regisConfirmpwd">确认密码</label>
-                        <input type="text" class="form-control" id="regisConfirmpwd" placeholder="再次输入密码">
-                    </div>
-                    <div class="form-group">
-                        <label for="regisUseremail">邮箱</label>
-                        <input type="text" class="form-control" id="regisUseremail" placeholder="输入e-mail地址">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn-register">注册</button>
-            </div>
-            </div>
-        </div>
-    </div>
+
     
     <!-- 用户登录模态框 -->
-    <div class="modal fade" id="loginModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-                    <h4 class="modal-title" id="loginModalLabel">用户登录</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="login-form">
-                        <input type="hidden" id="loginId">
-                        <div class="form-group">
-                            <label for="loginUsername">用户名</label>
-                            <input type="text" class="form-control" id="loginUsername" placeholder="输入用户名">
-                        </div>
-                        <div class="form-group">
-                            <label for="loginUserpwd">密码</label>
-                            <input type="password" class="form-control" id="loginUserpwd" placeholder="输入密码">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-login">登录</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    
 	
-    <script src="/lib/requirejs/require.min.js" data-main="/js/home/position"></script>
+    <script src="/lib/requirejs/require.min.js" data-main="/js/position/index.js"></script>
 </body>
 </html>
