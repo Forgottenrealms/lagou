@@ -11,12 +11,25 @@ require(["../config"], ()=>{
                 // console.log($("li.management"))
                 $("li.management").addClass("active").siblings().removeClass("active");
                 const user = sessionStorage.getItem("loginUser");   //获取登录用户名
-                console.log(user)
-                let html = "";
-                $.get("http://localhost:3000/api/positions/find.do", {user}, (data) => {  //  通过登录用户查找数据
+                // console.log(user)
+
+                const limits = 10;  //每页显示的条数
+
+                let html1 = "";
+                //查询条数
+                $.get("http://localhost:3000/api/positions/findCount.do", {user}, (data) => {
+                    const pages = Math.ceil(data.res_body.ret.data / limits);
+                    for(let i = 0; i < pages; i++) {
+                        html1 += `<li class="pages"><a href="#">${i + 1} <span class="sr-only"></span></a></li>`;
+                    }
+                    $(html1).insertBefore(".pagination .next-arrow");
+                });
+
+                let html2 = "";
+                $.get("http://localhost:3000/api/positions/find.do", {user, pages: 1}, (data) => {  //  通过登录用户查找数据
                     console.log(data)
                     $.each(data.res_body.ret.data, (index, curr) => {
-                        html += `<tr>
+                        html2 += `<tr>
                             <td class="hidden">${curr._id}</td>
                             <td>${index + 1}</td>
                             <td><img src="${curr.logo}" style="width:40px;height:40px;"></td>
@@ -29,7 +42,7 @@ require(["../config"], ()=>{
                             <td><a href="#" class="link-update" data-toggle="modal" data-target="#updateModal">修改</a> <a href="javacript:void(0);" class="link-delete">删除</a></td>
                         </tr>`;
                     });
-                    $("#tbd").html(html);
+                    $("#tbd").html(html2);
                 });
             },
             //事件监听
@@ -38,6 +51,7 @@ require(["../config"], ()=>{
                 $(".btn-update-position").on("click", this.updateCompanyHandle);  //  修改职位处理
                 $("#tbd").on("click", ".link-update", this.linkUpdateHandle);   //  点击修改链接
                 $("#tbd").on("click", ".link-delete", this.linkDeleteHandle);   //  点击删除链接
+                $(".pagination").on("click", ".pages a", this.pagesSwitchHandle);   //  点击页数切换
             },
             //添加职位
             addCompanyHandle() {
@@ -79,9 +93,9 @@ require(["../config"], ()=>{
                     _type = $("td:eq(6)", $(_tr)).text(),
                     _address = $("td:eq(7)", $(_tr)).text(),
                     _salary = $("td:eq(8)", $(_tr)).text();
-
+                    
                 $("#_id", $("#update-form")).val(_id);
-                // $("#updateLogo", $("#update-form")).val(_logo);
+                // $("#updateLogo", $("#update-form")).val(logo);
                 $("#updatePosition", $("#update-form")).val(_position);
                 $("#updateName", $("#update-form")).val(_company);
                 $("#updateExperience", $("#update-form")).val(_experience);
@@ -118,6 +132,32 @@ require(["../config"], ()=>{
                     console.log("删除成功")
                     location.reload();
                 })
+            },
+            //  点击分页
+            pagesSwitchHandle(event) {
+                const user = sessionStorage.getItem("loginUser");   //获取登录用户名
+                var src = $(event.target);
+                const pages = src.text();
+
+                let html = "";
+                $.get("http://localhost:3000/api/positions/find.do", {user, pages}, (data) => {  //  通过登录用户和页码查找数据
+                    // console.log(data)
+                    $.each(data.res_body.ret.data, (index, curr) => {
+                        html += `<tr>
+                            <td class="hidden">${curr._id}</td>
+                            <td>${index + 1}</td>
+                            <td><img src="${curr.logo}" style="width:40px;height:40px;"></td>
+                            <td>${curr.position}</td>
+                            <td>${curr.company}</td>
+                            <td>${curr.experience}</td>
+                            <td>${curr.type}</td>
+                            <td>${curr.address}</td>
+                            <td>${curr.salary}</td>
+                            <td><a href="#" class="link-update" data-toggle="modal" data-target="#updateModal">修改</a> <a href="javacript:void(0);" class="link-delete">删除</a></td>
+                        </tr>`;
+                    });
+                    $("#tbd").html(html);
+                });
             }
         });
 

@@ -27,6 +27,8 @@ var upload = multer({storage: storage});
 router.post("/add.do", upload.single("logo"), PositionService.add);
 // POST 请求 访问/api/positions/update.do资源
 router.post("/update.do", upload.single("logo"), PositionService.update);
+// GET 请求 访问/api/positions/findCount.do资源
+router.get("/findCount.do", PositionService.findCount);
 // GET 请求 访问/api/users/find.do资源
 router.get("/find.do", upload.single("logo"), PositionService.find);
 // GET 请求 访问/api/users/delete.do资源

@@ -36,12 +36,33 @@ const PositionService = {
                           });
                     });
     },
-    //查找职位
-    find(req, res, next) {
+    //查询条数
+    findCount(req, res, next) {
         //获取要查找的用户
         const {user} = req.query;
 
-        PositionDao.find({user})    //查找当前用户添加的职位信息
+        PositionDao.findCount({user})
+                    .then(data => {
+                        res.json({
+                            "res_code": 1,
+                            "res_error": "",
+                            "res_body": {
+                                "status": 200,
+                                "ret": {
+                                "code": 1,
+                                "message": "查找成功",
+                                "data": data
+                                }
+                            }
+                        });
+                    })
+    },
+    //查找职位
+    find(req, res, next) {
+        //获取要查找的用户
+        const {user, pages} = req.query;
+
+        PositionDao.find({user, pages})    //查找当前用户添加的职位信息
                     .then(data => {
                         console.log(data)
                             if(data.length >= 1) {
